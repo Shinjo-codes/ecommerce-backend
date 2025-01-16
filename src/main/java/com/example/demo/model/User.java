@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,14 +30,19 @@ public class User implements UserDetails {
     @NotBlank
     private String email;
 
+    @Setter
     @NotBlank
     private String password;
 
+    @Setter
     @Enumerated(EnumType.STRING)
     private Role role;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Cart cart;
+
+    private boolean emailConfirmation;
+    private String confirmationCode;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -71,14 +77,6 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
     }
 
     public enum Role{

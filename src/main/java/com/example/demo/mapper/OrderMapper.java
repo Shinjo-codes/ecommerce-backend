@@ -24,6 +24,7 @@ public interface OrderMapper {
 
     List<Order> toEntities(List<OrderDTO> orderDTOS);
 
+    @Mapping(target = "order", ignore = true)
     @Mapping(target = "product.id", source = "productId")
     OrderItem toOrderItemEntity(OrderItemDTO orderItemDTO);
 

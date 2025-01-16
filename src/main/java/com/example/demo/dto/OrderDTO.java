@@ -3,7 +3,6 @@ package com.example.demo.dto;
 
 import com.example.demo.model.Order;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
 import lombok.Data;
 
 import java.time.LocalDate;

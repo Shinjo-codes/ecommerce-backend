@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,15 +13,15 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "orders")
+@Table(name = "order_table")
 public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long userId;
     private String address;
     private String phoneNumber;
+    private LocalDate createdAt;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
